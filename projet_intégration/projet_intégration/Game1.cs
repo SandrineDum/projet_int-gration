@@ -78,6 +78,9 @@ namespace projet_intégration
                 var message = broadcastClient.MessagesReceived.Dequeue();
                 peerCount += 1;
             }
+
+            GérerClavier();
+
             base.Update(gameTime);
         }
 
@@ -92,6 +95,15 @@ namespace projet_intégration
             spriteBatch.DrawString(font, peerCount.ToString(), Vector2.Zero, Color.White);
             spriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        private void GérerClavier()
+        {
+            KeyboardState étatClavier = Keyboard.GetState();
+            if (étatClavier.IsKeyDown(Keys.Escape))
+            {
+                Exit();
+            }
         }
     }
 }
