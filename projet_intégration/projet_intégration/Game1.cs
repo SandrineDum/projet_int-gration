@@ -18,6 +18,9 @@ namespace projet_intégration
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        SpriteFont font;
+        BroadcastClient broadcastClient;
+        int peerCount;
 
         public Game1()
         {
@@ -33,8 +36,6 @@ namespace projet_intégration
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -46,8 +47,13 @@ namespace projet_intégration
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
+            font = Content.Load<SpriteFont>("text");
+            peerCount = 0;
+            broadcastClient = new BroadcastClient();
+            if (broadcastClient.IsListening)
+            {
+                broadcastClient.Send(new byte[] { 1, 2, 3 });
+            }
         }
 
         /// <summary>
@@ -66,12 +72,12 @@ namespace projet_intégration
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-
-            // TODO: Add your update logic here
-
+            if (broadcastClient.IsListening &&
+            broadcastClient.MessagesReceived.Count > 0)
+            {
+                var message = broadcastClient.MessagesReceived.Dequeue();
+                peerCount += 1;
+            }
             base.Update(gameTime);
         }
 
@@ -81,10 +87,10 @@ namespace projet_intégration
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Red);
-
-            // TODO: Add your drawing code here
-
+            GraphicsDevice.Clear(Color.Black);
+            spriteBatch.Begin();
+            spriteBatch.DrawString(font, peerCount.ToString(), Vector2.Zero, Color.White);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
