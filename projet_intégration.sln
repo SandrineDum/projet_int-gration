@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "projet_intégration", "projet_intégration\projet_intégration\projet_intégration.csproj", "{1017D2A6-B7F1-4830-BED5-44D25E0B4DD3}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "projet_intégrationContent", "projet_intégration\projet_intégrationContent\projet_intégrationContent.contentproj", "{CF0BB1BA-3E31-47E7-AD02-D83B99DB1F27}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "projet_intégrationContent", "projet_intégration\projet_intégrationContent\projet_intégrationContent.contentproj", "{CF0BB1BA-3E31-47E7-AD02-D83B99DB1F27}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9A3AFF01-DADB-44DC-ACF9-59B465B4F795}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
